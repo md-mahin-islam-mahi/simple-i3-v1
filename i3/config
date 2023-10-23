@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $browser brave
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -22,6 +24,9 @@ font pango:monospace 8
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+#### Dunst ####
+exec --no-startup-id dunst-config ~/.config/dunst/dunstrc
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -167,6 +172,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# lock i3
+bindsym $mod+Control+l exec i3lock --image ~/.config/i3/bike.png
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -215,11 +222,11 @@ exec_always picom
 
 # My binds
 bindsym $mod+Shift+s exec spectacle
-bindsym $mod+b exec brave
+bindsym $mod+b exec $browser
 bindsym $mod+Shift+b exec BleachBit
 
 # Policy kit
 exec_always /usr/lib/polkit-kde-authentication-agent-1
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/i3-ss/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/i3-ss/$(date).png"
